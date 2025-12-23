@@ -1,0 +1,92 @@
+Building configuration...
+
+Current configuration : 1010 bytes
+!
+version 12.2
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname Router
+!
+!
+!
+!
+!
+!
+!
+!
+ip cef
+no ipv6 cef
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface GigabitEthernet0/0
+ ip address 10.10.10.34 255.255.255.252
+ ip helper-address 192.168.100.6
+!
+interface GigabitEthernet1/0
+ ip address 10.10.10.26 255.255.255.252
+!
+interface GigabitEthernet2/0
+ no ip address
+ shutdown
+!
+interface GigabitEthernet3/0
+ no ip address
+ shutdown
+!
+interface GigabitEthernet4/0
+ ip address 10.10.10.10 255.255.255.252
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet5/0
+ ip address 10.10.10.14 255.255.255.252
+ duplex auto
+ speed auto
+!
+router ospf 1
+ router-id 4.4.4.4
+ log-adjacency-changes
+ network 10.10.10.8 0.0.0.3 area 0
+ network 10.10.10.12 0.0.0.3 area 0
+ network 10.10.10.24 0.0.0.3 area 0
+ network 10.10.10.32 0.0.0.3 area 0
+!
+ip classless
+!
+ip flow-export version 9
+!
+!
+!
+!
+!
+!
+!
+!
+line con 0
+!
+line aux 0
+!
+line vty 0 4
+ login
+!
+!
+!
+end

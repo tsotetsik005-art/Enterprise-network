@@ -1,0 +1,116 @@
+Building configuration...
+
+Current configuration : 1668 bytes
+!
+version 12.2
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname R1_main
+!
+!
+!
+!
+!
+!
+!
+!
+no ip cef
+no ipv6 cef
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface GigabitEthernet0/0
+ ip address 10.10.10.2 255.255.255.252
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet1/0
+ ip address 10.10.10.6 255.255.255.252
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet2/0
+ ip address 192.168.100.1 255.255.255.240
+ ip helper-address 192.168.100.5
+!
+interface GigabitEthernet3/0
+ ip address 10.10.10.33 255.255.255.252
+!
+interface GigabitEthernet4/0
+ ip address 10.10.10.30 255.255.255.252
+!
+interface GigabitEthernet5/0
+ no ip address
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet6/0
+ no ip address
+!
+interface GigabitEthernet6/0.80
+ encapsulation dot1Q 80
+ ip address 192.168.200.1 255.255.255.0
+ ip helper-address 192.168.100.10
+!
+interface GigabitEthernet6/0.85
+ encapsulation dot1Q 85
+ ip address 192.168.201.1 255.255.255.0
+ ip helper-address 192.168.100.10
+!
+interface GigabitEthernet6/0.90
+ encapsulation dot1Q 90
+ ip address 192.168.202.1 255.255.255.192
+ ip helper-address 192.168.100.10
+!
+interface GigabitEthernet6/0.99
+ encapsulation dot1Q 99 native
+ ip address 192.168.202.65 255.255.255.240
+ ip helper-address 192.168.100.10
+!
+router ospf 1
+ router-id 1.1.1.1
+ log-adjacency-changes
+ network 10.10.10.0 0.0.0.3 area 0
+ network 10.10.10.4 0.0.0.3 area 0
+ network 192.168.100.0 0.0.0.15 area 0
+ network 10.10.10.28 0.0.0.3 area 0
+ network 10.10.10.32 0.0.0.3 area 0
+!
+ip classless
+!
+ip flow-export version 9
+!
+!
+!
+!
+!
+!
+!
+!
+line con 0
+!
+line aux 0
+!
+line vty 0 4
+ login
+!
+!
+!
+end
